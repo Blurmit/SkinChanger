@@ -1,0 +1,5 @@
+invalid-arguments: "&cInvalid arguments! Usage: /{command} {args}"
+no-permission: "&cSorry! You do not have permission to use this command."
+skin-changed: "&aSucess! Changed &f{player}'s &askin to &f{skin}&a!"
+player-not-found: "&cError! Player not found."
+reset-skin: "&aSucess! Reset your skin."

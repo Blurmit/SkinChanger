@@ -7,9 +7,7 @@ import com.mojang.authlib.properties.Property;
 import me.blurmit.skin.SkinChanger;
 import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -49,7 +47,7 @@ public class playerUtil
 
     }
 
-    public Property getSkin(String name) throws Exception
+    public Property getSkin(String name)
     {
         try {
             URL url_0 = new URL("https://api.mojang.com/users/profiles/minecraft/" + name);
@@ -86,6 +84,7 @@ public class playerUtil
 
         EntityPlayer p = ((CraftPlayer) player).getHandle();
         World world = p.getWorld();
+        int slot = player.getInventory().getHeldItemSlot();
 
         new BukkitRunnable() {
             @Override
@@ -94,16 +93,17 @@ public class playerUtil
                         p.playerInteractManager.getGameMode(), p.playerInteractManager.getGameMode(), false, false, true));
                 if (player.isOp())
                 {
-                    player.setOp(false);
                     player.setOp(true);
                 }
                 if (player.isFlying())
                 {
-                    player.teleport(loc);
                     player.setAllowFlight(true);
                 }
                 player.getInventory().setContents(player.getInventory().getContents());
                 player.getInventory().setArmorContents(player.getInventory().getArmorContents());
+                player.setExp(player.getExp());
+                player.setFoodLevel(player.getFoodLevel());
+                player.getInventory().setHeldItemSlot(slot);
                 player.teleport(loc);
             }
         }.runTaskLater(plugin, 5);

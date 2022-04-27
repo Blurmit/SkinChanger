@@ -1,0 +1,10 @@
+name: SkinChanger
+version: '${project.version}'
+main: me.blurmit.skinchanger.SkinChanger
+api-version: 1.16
+authors: [ Blurmit ]
+description: A plugin that allows players to change their skin
+website: https://blurmit.ml
+commands:
+  skin:
+    description: Allows players to change their skin
